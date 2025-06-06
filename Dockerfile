@@ -1,8 +1,12 @@
-FROM n8nio/n8n
+FROM n8nio/n8n:latest
 
 USER root
 
-# Install yt-dlp, ffmpeg, curl
-RUN apt update && apt install -y ffmpeg curl python3-pip && pip install yt-dlp
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    ffmpeg \
+    curl \
+  && pip3 install yt-dlp
 
 USER node
