@@ -2,17 +2,17 @@ FROM n8nio/n8n:1.37.1
 
 USER root
 
-# Step-by-step install to see which command fails
-RUN apk update
-
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     ffmpeg \
     python3 \
     py3-pip \
     py3-setuptools \
     py3-wheel \
     build-base \
-    curl
+    curl \
+    ca-certificates \
+    openssl \
+    && update-ca-certificates
 
 RUN pip3 install --upgrade pip
 
