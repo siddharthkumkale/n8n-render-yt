@@ -1,8 +1,9 @@
-FROM n8nio/n8n:1.44.0-root
+# Use the full root image of n8n
+FROM n8nio/n8n:1.37.1
 
 USER root
 
-# Install ffmpeg, python3, pip, curl, and yt-dlp
+# Install required tools
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     python3 \
