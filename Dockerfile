@@ -14,8 +14,12 @@ RUN apk update && apk add --no-cache \
     openssl \
     && update-ca-certificates
 
-RUN pip3 install --upgrade pip
+# Create and activate virtual environment, then install yt-dlp inside it
+RUN python3 -m venv /opt/venv \
+    && /opt/venv/bin/pip install --upgrade pip \
+    && /opt/venv/bin/pip install yt-dlp
 
-RUN pip3 install yt-dlp
+# Optionally, add the virtualenv pip and python to PATH so commands use it by default
+ENV PATH="/opt/venv/bin:$PATH"
 
 USER node
