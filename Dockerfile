@@ -19,7 +19,10 @@ RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install --upgrade pip \
     && /opt/venv/bin/pip install yt-dlp
 
-# Optionally, add the virtualenv pip and python to PATH so commands use it by default
+# Add the virtualenv pip and python to PATH so commands use it by default
 ENV PATH="/opt/venv/bin:$PATH"
+
+# ✅ COPY cookies.txt into the container
+COPY cookies.txt /tmp/cookies.txt
 
 USER node
